@@ -94,10 +94,10 @@ int main()
         }
     }
 
-    cout<< "Nullable: "<< endl;
+   // cout<< "Nullable: "<< endl;
     for (auto it = nullable.begin(); it != nullable.end(); ++it)
     {
-       cout << *it << " ";
+     //  cout << *it << " ";
     }
 
     unordered_set<string> extraProductions;

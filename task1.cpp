@@ -85,9 +85,10 @@ int main()
         }
     }
 
+   // cout<< "Nullable: "<< endl;
     for (auto it = nullable.begin(); it != nullable.end(); ++it)
     {
-     //   cout << *it << " ";
+   //    cout << *it << " ";
     }
 
     unordered_set<string> extraProductions;
@@ -124,9 +125,11 @@ int main()
     }
 
     cout<< cfgSize<<endl;
+    string cfgS = "";
     for (auto it = cfg.begin(); it != cfg.end(); ++it)
     {
-      cout<< *it <<endl;
+      cfgS = cfgS + *it + "\n";
     }
-
+    cfgS = cfgS.substr(0, cfgS.size()-1);
+    cout<< cfgS;
 }

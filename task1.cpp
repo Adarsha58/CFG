@@ -85,7 +85,7 @@ int main()
         for (auto it = cfg.begin(); it != cfg.end(); ++it)
         {
             string rhs = (*it).substr(2);
-            cout<< "rhs: " << rhs<< endl;
+         //   cout<< "rhs: " << rhs<< endl;
             int tmpSize = 0;
             for (int j = 0; j < rhs.size(); j++)
             {

@@ -59,7 +59,10 @@ int main()
         cin >> tmp;
         production = production + tmp + " ";
         cin >> tmp;
-
+        if(tmp.size() > 1){
+            tmp.erase(std::remove(tmp.begin(), tmp.end(), '_'), tmp.end());
+        }
+        
         if (tmp == "_")
         {
             nullable.insert(production[0]);
@@ -68,7 +71,6 @@ int main()
 
         production = production + tmp;
         cfg.insert(production);
-        cfgSize++;
     }
 
     unordered_set<char> nullablePrime = nullable;
@@ -101,13 +103,6 @@ int main()
         }
     }
 
-/*
-    cout << "Nullable: " << endl;
-    for (auto it = nullable.begin(); it != nullable.end(); ++it)
-    {
-        cout << *it << " ";
-    }
-*/
 
     unordered_set<string> extraProductions;
     for (auto it = cfg.begin(); it != cfg.end(); ++it)
@@ -134,13 +129,18 @@ int main()
                 continue;
             }
             extraProductions.insert(lhs);
-            cfgSize++;
+
         }
     }
 
     for (auto it = extraProductions.begin(); it != extraProductions.end(); ++it)
     {
       cfg.insert((*it));
+    }
+
+    for (auto it = cfg.begin(); it != cfg.end(); ++it)
+    {
+      cfgSize++;
     }
 
     cout<< cfgSize<<endl;

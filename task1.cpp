@@ -69,7 +69,16 @@ int main()
         cfgSize++;
     }
 
-    for (int i = 0; i < cfgSize; i++){
+    unordered_set<char> nullablePrime = nullable;
+
+    while(!nullablePrime.empty()){
+        for (auto it = nullablePrime.begin(); it != nullablePrime.end(); ++it)
+        {
+            nullable.insert((*it));
+        }
+
+        nullablePrime.clear();
+
         for (auto it = cfg.begin(); it != cfg.end(); ++it)
         {
             string rhs = (*it).substr(2);
@@ -81,19 +90,20 @@ int main()
             }
 
             if (tmpSize == rhs.size())
-                nullable.insert((*it)[0]);
+                nullablePrime.insert((*it)[0]);
         }
     }
 
-   // cout<< "Nullable: "<< endl;
+    cout<< "Nullable: "<< endl;
     for (auto it = nullable.begin(); it != nullable.end(); ++it)
     {
-   //    cout << *it << " ";
+       cout << *it << " ";
     }
 
     unordered_set<string> extraProductions;
     for (auto it = cfg.begin(); it != cfg.end(); ++it)
     {
+        
         string replacable = "";
         string rhs = (*it).substr(2);
         for (int j = 0; j < rhs.size(); j++)

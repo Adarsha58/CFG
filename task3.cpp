@@ -31,7 +31,7 @@ string createNewName(string nTerminus)
     }
     
     if (digit == 9){
-        digit = 0;
+        digit = 1;
         letter++;
     }
     string output = "";

@@ -31,12 +31,14 @@ void combination(string *arr, string s)
     }
 }
 
-string replace(string str, string replacable){
-    for(int i = 1; i < replacable.size(); i+=2){
+string replace(string str, string replacable)
+{
+    for (int i = 1; i < replacable.size(); i += 2)
+    {
         int index = replacable[i] - '0';
         str[index] = '_';
     }
-    
+
     str.erase(std::remove(str.begin(), str.end(), '_'), str.end());
     return str;
 }
@@ -71,34 +73,41 @@ int main()
 
     unordered_set<char> nullablePrime = nullable;
 
-    while(!nullablePrime.empty()){
+    while (!nullablePrime.empty())
+    {
+        //cout<< "hello"<<endl;
         for (auto it = nullablePrime.begin(); it != nullablePrime.end(); ++it)
         {
             nullable.insert((*it));
         }
 
         nullablePrime.clear();
-
         for (auto it = cfg.begin(); it != cfg.end(); ++it)
         {
             string rhs = (*it).substr(2);
+            cout<< "rhs: " << rhs<< endl;
             int tmpSize = 0;
             for (int j = 0; j < rhs.size(); j++)
             {
                 if (nullable.find(rhs[j]) != nullable.end())
                     tmpSize++;
             }
-
-            if (tmpSize == rhs.size())
-                nullablePrime.insert((*it)[0]);
+            if (tmpSize == rhs.size() && tmpSize > 0)
+            {
+                if( nullable.find((*it)[0]) == nullable.end()){
+                    nullablePrime.insert((*it)[0]);
+                }
+            }
         }
     }
 
-   // cout<< "Nullable: "<< endl;
+/*
+    cout << "Nullable: " << endl;
     for (auto it = nullable.begin(); it != nullable.end(); ++it)
     {
-     //  cout << *it << " ";
+        cout << *it << " ";
     }
+*/
 
     unordered_set<string> extraProductions;
     for (auto it = cfg.begin(); it != cfg.end(); ++it)
@@ -142,4 +151,6 @@ int main()
     }
     cfgS = cfgS.substr(0, cfgS.size()-1);
     cout<< cfgS;
+
+    return 0;
 }

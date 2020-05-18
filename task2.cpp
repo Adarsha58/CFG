@@ -88,11 +88,16 @@ int main()
         } 
     }
     cout<< cfgSize<<endl;
+    string cfgS = "";
     for (auto it = cfg.begin(); it != cfg.end(); ++it)
     {
         for(auto it1 = (it->second).begin(); it1 != (it->second).end(); ++it1){
-            cout<< it->first << " " << *it1 << endl;
+            string s;
+            s = it->first;
+            cfgS += s + " " + (*it1) + "\n";
         } 
     }
+    cfgS = cfgS.substr(0, cfgS.size()-1);
+    cout<< cfgS;
     return 0;
 }
